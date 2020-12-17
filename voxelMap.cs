@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
@@ -20,10 +20,13 @@ public class voxelMap : MonoBehaviour
     private float detailMultiplay=0.025f;
     private float detailHeightMultiplay=40;
     private int mapHeight=10;
+    private int textureMatrix=0;
 
 
     void Awake()
     {
+        textureMatrix= editVoxel.textureMatix;
+
         size=new Vector3Int(editVoxel.size,editVoxel.height,editVoxel.size);
 
         cubes=new int[size.x,size.y,size.z];
@@ -51,7 +54,7 @@ public class voxelMap : MonoBehaviour
         createMesh();
     }
     
-    void createFace(Vector3 normal){
+    void createFace(Vector3 normal,int blockIndex){
         int[] trisA={
             index+0,index+1,index+2,
             index+2,index+1,index+3
@@ -62,11 +65,17 @@ public class voxelMap : MonoBehaviour
             normal,
             normal
         };
+        float posTexture=1f/textureMatrix;
+        int line=(blockIndex-1)/textureMatrix;
+
+        float vertical=(textureMatrix-1-line)/(float)textureMatrix;
+        float horizontal=((blockIndex-1)-line*textureMatrix)/(float)textureMatrix;
+
         Vector2[] uvsA={
-            new Vector2(1,0),
-            new Vector2(1,1),
-            new Vector2(0,0),
-            new Vector2(0,1)
+            new Vector2(posTexture+horizontal,vertical),
+            new Vector2(posTexture+horizontal,posTexture+vertical),
+            new Vector2(horizontal,vertical),
+            new Vector2(horizontal,posTexture+vertical)
         };
                             
         tris.AddRange(trisA);
@@ -174,7 +183,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x+0.5f,y-0.5f,z+0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.right);
+                            createFace(Vector3.right,cubes[x,y,z]);
                         }
                         
                         if(left){
@@ -185,7 +194,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x-0.5f,y-0.5f,z-0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.left);
+                            createFace(Vector3.left,cubes[x,y,z]);
                         }
                         
                         if(up){
@@ -196,7 +205,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x-0.5f,y+0.5f,z-0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.up);
+                            createFace(Vector3.up,cubes[x,y,z]);
                         }
                         
                         if(down){
@@ -207,7 +216,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x-0.5f,y-0.5f,z+0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.down);
+                            createFace(Vector3.down,cubes[x,y,z]);
                         }
                         
                         if(forward){
@@ -218,7 +227,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x-0.5f,y+0.5f,z+0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.forward);
+                            createFace(Vector3.forward,cubes[x,y,z]);
                         }
                         
                         
@@ -230,7 +239,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x-0.5f,y-0.5f,z-0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.forward);
+                            createFace(Vector3.forward,cubes[x,y,z]);
                         }
                     }
                 }
