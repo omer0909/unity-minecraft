@@ -1,10 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 
 public class editVoxel : MonoBehaviour
 {
+    public static int textureMatix=3;
+    public int blockIndex=0;
     public float renderDistance=100;
     public float editDistance=10;
     private List<voxelMap> mesh=new List<voxelMap>();
@@ -99,7 +101,7 @@ public class editVoxel : MonoBehaviour
 
         if(add&&pos.y!=height-1){
             if(!collisionControl(pos)){
-                meshMain.cubes[indexpos.x,indexpos.y,indexpos.z]=1;
+                meshMain.cubes[indexpos.x,indexpos.y,indexpos.z]=blockIndex+1;
             }
         }else if(pos.y!=0){
             meshMain.cubes[indexpos.x,indexpos.y,indexpos.z]=0;
