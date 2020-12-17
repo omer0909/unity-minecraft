@@ -150,7 +150,7 @@ public class editVoxel : MonoBehaviour
             add=Input.GetMouseButtonDown(1);
 
             RaycastHit hit;
-            Ray ray=Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray=Camera.main.ScreenPointToRay(new Vector2(Screen.width*0.5f,Screen.height*0.5f));
             if(Physics.Raycast(ray,out hit,editDistance)){
                 if(add){
                     hit.normal=hit.normal*-1;
