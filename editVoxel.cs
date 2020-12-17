@@ -8,7 +8,7 @@ public class editVoxel : MonoBehaviour
     public float renderDistance=50;
     public float editDistance=10;
     private List<voxelMap> mesh=new List<voxelMap>();
-    public List<Vector2Int> positions =new List<Vector2Int>();
+    private List<Vector2Int> positions =new List<Vector2Int>();
     public Material material;
     private GameObject map;
     bool add=true;
