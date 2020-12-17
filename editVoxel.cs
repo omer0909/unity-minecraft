@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class editVoxel : MonoBehaviour
 {
-    public float renderDistance=50;
+    public float renderDistance=100;
     public float editDistance=10;
     private List<voxelMap> mesh=new List<voxelMap>();
     private List<Vector2Int> positions =new List<Vector2Int>();
