@@ -36,18 +36,13 @@ public class voxelMap : MonoBehaviour
         meshCollider = GetComponent<MeshCollider>();
 
         for (int x=0;x<size.x;x++){
-            for (int y=0;y<size.y;y++){
-                for (int z=0;z<size.z;z++){
+            for (int z=0;z<size.z;z++){
 
-                    float bigDetail=Mathf.PerlinNoise((x+transform.position.x)*bigDetailMultiplay-999,(z+transform.position.z)*bigDetailMultiplay-999);
+                float bigDetail=Mathf.PerlinNoise((x+transform.position.x)*bigDetailMultiplay-999,(z+transform.position.z)*bigDetailMultiplay-999);
+                int maxHeight=mapHeight+Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x)*detailMultiplay-999,(z+transform.position.z)*detailMultiplay-999)*detailHeightMultiplay*bigDetail);
 
-                    int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x)*detailMultiplay-999,(z+transform.position.z)*detailMultiplay-999)*detailHeightMultiplay*bigDetail);
-
-                    if(y<=maxHeight+mapHeight){
+                for (int y=0;y<=maxHeight;y++){
                         cubes[x,y,z]=1;
-                    }
-                    
-
                 }
             }
         }
