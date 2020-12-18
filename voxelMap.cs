@@ -39,9 +39,9 @@ public class voxelMap : MonoBehaviour
             for (int y=0;y<size.y;y++){
                 for (int z=0;z<size.z;z++){
 
-                    float bigDetail=Mathf.PerlinNoise((x+transform.position.x-99999)*bigDetailMultiplay,(z+transform.position.z-99999)*bigDetailMultiplay);
+                    float bigDetail=Mathf.PerlinNoise((x+transform.position.x-999)*bigDetailMultiplay,(z+transform.position.z-999)*bigDetailMultiplay);
 
-                    int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x-99999)*detailMultiplay,(z+transform.position.z-99999)*detailMultiplay)*detailHeightMultiplay*bigDetail);
+                    int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x-999)*detailMultiplay,(z+transform.position.z-999)*detailMultiplay)*detailHeightMultiplay*bigDetail);
 
                     if(y<=maxHeight+mapHeight){
                         cubes[x,y,z]=1;
@@ -104,8 +104,8 @@ public class voxelMap : MonoBehaviour
                                 right=rightM.cubes[0,y,z]==0;
 
                         }else{
-                            float bigDetail=Mathf.PerlinNoise((x+1+transform.position.x-99999)*bigDetailMultiplay,(z+transform.position.z-99999)*bigDetailMultiplay);
-                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+1+transform.position.x-99999)*detailMultiplay,(z+transform.position.z-99999)*detailMultiplay)*detailHeightMultiplay*bigDetail);
+                            float bigDetail=Mathf.PerlinNoise((x+1+transform.position.x)*bigDetailMultiplay-999,(z+transform.position.z)*bigDetailMultiplay-999);
+                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+1+transform.position.x)*detailMultiplay-999,(z+transform.position.z)*detailMultiplay)*detailHeightMultiplay*bigDetail-999);
                             right=y>maxHeight+mapHeight;
 
                         }
@@ -121,8 +121,8 @@ public class voxelMap : MonoBehaviour
                             left=leftM.cubes[size.x-1,y,z]==0;
 
                         }else{
-                            float bigDetail=Mathf.PerlinNoise((x-1+transform.position.x-99999)*bigDetailMultiplay,(z+transform.position.z-99999)*bigDetailMultiplay);
-                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x-1+transform.position.x-99999)*detailMultiplay,(z+transform.position.z-99999)*detailMultiplay)*detailHeightMultiplay*bigDetail);
+                            float bigDetail=Mathf.PerlinNoise((x-1+transform.position.x)*bigDetailMultiplay-999,(z+transform.position.z)*bigDetailMultiplay-999);
+                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x-1+transform.position.x)*detailMultiplay-999,(z+transform.position.z)*detailMultiplay)*detailHeightMultiplay*bigDetail-999);
                             left=y>maxHeight+mapHeight;
                         }
 
@@ -154,8 +154,8 @@ public class voxelMap : MonoBehaviour
                             forward=forwardM.cubes[x,y,0]==0;
 
                         }else{
-                            float bigDetail=Mathf.PerlinNoise((x+transform.position.x-99999)*bigDetailMultiplay,(z+1+transform.position.z-99999)*bigDetailMultiplay);
-                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x-99999)*detailMultiplay,(z+1+transform.position.z-99999)*detailMultiplay)*detailHeightMultiplay*bigDetail);
+                            float bigDetail=Mathf.PerlinNoise((x+transform.position.x)*bigDetailMultiplay-999,(z+1+transform.position.z)*bigDetailMultiplay-999);
+                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x)*detailMultiplay-999,(z+1+transform.position.z)*detailMultiplay)*detailHeightMultiplay*bigDetail-999);
                             forward=y>maxHeight+mapHeight;
                         }
 
@@ -169,8 +169,8 @@ public class voxelMap : MonoBehaviour
                             back=backM.cubes[x,y,size.z-1]==0;
 
                         }else{
-                            float bigDetail=Mathf.PerlinNoise((x+transform.position.x-99999)*bigDetailMultiplay,(z-1+transform.position.z-99999)*bigDetailMultiplay);
-                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x-99999)*detailMultiplay,(z-1+transform.position.z-99999)*detailMultiplay)*detailHeightMultiplay*bigDetail);
+                            float bigDetail=Mathf.PerlinNoise((x+transform.position.x)*bigDetailMultiplay-999,(z-1+transform.position.z)*bigDetailMultiplay-999);
+                            int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+transform.position.x)*detailMultiplay-999,(z-1+transform.position.z)*detailMultiplay)*detailHeightMultiplay*bigDetail-999);
                             back=y>maxHeight+mapHeight;
                         }
 
