@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class editVoxel : MonoBehaviour
 {
-    public static int textureMatix=0;
+    public static int textureMatix=1;
     public int blockIndex=0;
     public float renderDistance=100;
     public float editDistance=10;
