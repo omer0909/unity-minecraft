@@ -41,7 +41,7 @@ public class voxelMap : MonoBehaviour
                 int maxHeight=calculateHeight(x,z);
 
                 for (int y=0;y<=maxHeight;y++){
-                        cubes[x,y,z]=1;
+                    cubes[x,y,z]=1;
                 }
             }
         }
