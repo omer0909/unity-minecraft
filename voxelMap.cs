@@ -51,7 +51,7 @@ public class voxelMap : MonoBehaviour
         Vector2Int posObject=new Vector2Int(Mathf.RoundToInt(transform.position.x),Mathf.RoundToInt(transform.position.z));
 
         float bigDetail=Mathf.PerlinNoise((x+posObject.x)*bigDetailMultiplay-999,(y+posObject.y)*bigDetailMultiplay-999);
-        int maxHeight=mapHeight+Mathf.FloorToInt(Mathf.PerlinNoise((x+posObject.x)*detailMultiplay-999,(y+posObject.y)*detailMultiplay-999)*detailHeightMultiplay*bigDetail);
+        int maxHeight=Mathf.FloorToInt(Mathf.PerlinNoise((x+posObject.x)*detailMultiplay-999,(y+posObject.y)*detailMultiplay-999)*detailHeightMultiplay*bigDetail);
         return maxHeight+mapHeight;
     }
     
