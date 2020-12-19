@@ -107,7 +107,7 @@ public class voxelMap : MonoBehaviour
                         }else{
                             
                             int maxHeight=calculateHeight(x+1,z);
-                            right=y>=maxHeight;
+                            right=y>maxHeight;
 
                         }
                         
@@ -123,7 +123,7 @@ public class voxelMap : MonoBehaviour
 
                         }else{
                             int maxHeight=calculateHeight(x-1,z);
-                            left=y>=maxHeight;
+                            left=y>maxHeight;
                         }
 
                         //up
@@ -155,7 +155,7 @@ public class voxelMap : MonoBehaviour
 
                         }else{
                             int maxHeight=calculateHeight(x,z+1);
-                            forward=y>=maxHeight;
+                            forward=y>maxHeight;
                         }
 
                         //back
@@ -169,7 +169,7 @@ public class voxelMap : MonoBehaviour
 
                         }else{
                             int maxHeight=calculateHeight(x,z-1);
-                            back=y>=maxHeight;
+                            back=y>maxHeight;
                         }
 
 
