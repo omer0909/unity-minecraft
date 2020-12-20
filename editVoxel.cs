@@ -10,7 +10,7 @@ public class editVoxel : MonoBehaviour
     public static bool open;
 
     public List<mapData> mapDatas=new List<mapData>();
-    public int textureMatix=3;
+    public int textureMatix=1;
     public int blockIndex=0;
     public float renderDistance=100;
     public float editDistance=10;
