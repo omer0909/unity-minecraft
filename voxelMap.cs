@@ -38,6 +38,13 @@ public class voxelMap : MonoBehaviour
         //40=mountain height 10=place height
         firstHeight=40+10+1;
 
+        int mapIndex=-1;
+        for(int a=0;a<mainVoxel.mapDatas.Count;a++){
+            if(posObject==mainVoxel.mapDatas[a].pos){
+                mapIndex=a;
+                firstHeight=size.y;
+            }
+        }
         
         for (int x=0;x<size.x+2;x++){
             for (int z=0;z<size.z+2;z++){
@@ -50,19 +57,19 @@ public class voxelMap : MonoBehaviour
                 }
             }
         }
-
-        for(int a=0;a<mainVoxel.mapDatas.Count;a++){
-            if(posObject==mainVoxel.mapDatas[a].pos){
-                Vector3Int[] poses=mainVoxel.mapDatas[a].savedBlocks;;
-                int[] blockIndex=mainVoxel.mapDatas[a].blockIndex;
-
-                for(int b=0;b<blockIndex.Length;b++){
-                    Vector3Int pos=poses[b];
-                    cubes[pos.x,pos.y,pos.z]=blockIndex[b];
-                }
-                mainVoxel.mapDatas.RemoveAt(a);
+        
+        if(mapIndex!=-1){
+            Vector3Int[] poses=mainVoxel.mapDatas[mapIndex].savedBlocks;
+            int[] blockIndex=mainVoxel.mapDatas[mapIndex].blockIndex;
+            for(int b=0;b<blockIndex.Length;b++){
+                Vector3Int pos=poses[b];
+                cubes[pos.x,pos.y,pos.z]=blockIndex[b];
             }
+            mainVoxel.mapDatas.RemoveAt(mapIndex);
         }
+        
+            
+        
 
         createMesh();
         firstHeight=size.y;
