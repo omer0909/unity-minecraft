@@ -46,6 +46,43 @@ public class editVoxel : MonoBehaviour
 
     }
 
+    bool collisionControl(Vector3Int pos)
+    {
+        bool contact = false;
+        Vector3 posCharachter = transform.position;
+
+        for (int i = 0; i < 2; i++)
+        {
+            Vector3 spherePos = new Vector3(posCharachter.x, (posCharachter.y + charachterHeight * 0.5f) - charachterHeight * i, posCharachter.z);
+
+            //right
+            if (spherePos.y < pos.y + 0.5f + charachterRadius && spherePos.y > pos.y - 0.5f - charachterRadius && spherePos.z > pos.z - 0.5f - charachterRadius && spherePos.z < pos.z + 0.5f + charachterRadius)
+            {
+                if (spherePos.x < pos.x + 0.5f + charachterRadius && spherePos.x > pos.x - 0.5f - charachterRadius)
+                {
+                    contact = true;
+                }
+            }
+            //up
+            if (spherePos.x < pos.x + 0.5f + charachterRadius && spherePos.x > pos.x - 0.5f - charachterRadius && spherePos.z > pos.z - 0.5f - charachterRadius && spherePos.z < pos.z + 0.5f + charachterRadius)
+            {
+                if (spherePos.y < pos.y + 0.5f + charachterRadius && spherePos.y > pos.y - 0.5f - charachterRadius)
+                {
+                    contact = true;
+                }
+            }
+            //forward
+            if (spherePos.x < pos.x + 0.5f + charachterRadius && spherePos.x > pos.x - 0.5f - charachterRadius && spherePos.y > pos.y - 0.5f - charachterRadius && spherePos.y < pos.y + 0.5f + charachterRadius)
+            {
+                if (spherePos.z < pos.z + 0.5f + charachterRadius && spherePos.z > pos.z - 0.5f - charachterRadius)
+                {
+                    contact = true;
+                }
+            }
+        }
+        return contact;
+    }
+
     void mapControl()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.z);
@@ -96,8 +133,7 @@ public class editVoxel : MonoBehaviour
 
         if (pos.y != height - 1 && pos.y != 0)
         {
-            bool collision = Physics.OverlapBox(pos + new Vector3Int(1, 0, 1), Vector3.one * 0.5f, Quaternion.identity, LayerMask.GetMask("Ignore Raycast")).Length > 0;
-            if (!collision || !add)
+            if (!collisionControl(pos + new Vector3Int(1, 0, 1)) || !add)
             {
                 meshMain.cubes[indexpos.x + 1, indexpos.y, indexpos.z + 1] = addIndex;
                 meshMain.createMesh();
