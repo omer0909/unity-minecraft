@@ -210,7 +210,7 @@ public class voxelMap : MonoBehaviour
                                 new Vector3(x-0.5f,y-0.5f,z-0.5f)
                             };
                             vertices.AddRange(verticesA);
-                            createFace(Vector3.forward, cubes[x, y, z]);
+                            createFace(Vector3.back, cubes[x, y, z]);
                         }
                     }
                 }
