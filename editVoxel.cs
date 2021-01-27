@@ -16,6 +16,7 @@ public class editVoxel : MonoBehaviour
     public float editDistance = 10;
     private List<voxelMap> mesh = new List<voxelMap>();
     private List<Vector2Int> positions = new List<Vector2Int>();
+    private HashSet<Vector2Int> searchPos = new HashSet<Vector2Int>();
     public Material material;
     private GameObject map;
     bool add = true;
@@ -42,6 +43,7 @@ public class editVoxel : MonoBehaviour
         map.AddComponent<voxelMap>();
         map.GetComponent<MeshRenderer>().material = material;
         positions.Add(Vector2Int.zero);
+        searchPos.Add(Vector2Int.zero);
         mesh.Add(map.GetComponent<voxelMap>());
 
     }
@@ -96,10 +98,11 @@ public class editVoxel : MonoBehaviour
             {
                 Vector2Int posCreated = new Vector2Int(x - distanceInt, y - distanceInt) + posInt;
 
-                if (!positions.Contains(posCreated) && Vector2.Distance(pos - new Vector2(size * 0.5f, size * 0.5f), posCreated * size) < renderDistance)
+                if (!searchPos.Contains(posCreated) && Vector2.Distance(pos - new Vector2(size * 0.5f, size * 0.5f), posCreated * size) < renderDistance)
                 {
                     GameObject created = Instantiate(map, new Vector3(posCreated.x, 0, posCreated.y) * size, Quaternion.identity);
                     positions.Add(posCreated);
+                    searchPos.Add(posCreated);
                     mesh.Add(created.GetComponent<voxelMap>());
                 }
 
