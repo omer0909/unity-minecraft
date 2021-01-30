@@ -215,7 +215,11 @@ public class editVoxel : MonoBehaviour
             mapDatas[mapDatas.Count - 1].savedBlocks = posBlocks.ToArray();
         }
         cameraT.transform.rotation = gameDataV.camera;
+
+        CharacterController c = GetComponent<CharacterController>();
+        c.enabled = false;
         transform.position = gameDataV.character;
+        c.enabled = true;
     }
 
     void save()
