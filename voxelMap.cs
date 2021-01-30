@@ -132,10 +132,10 @@ public class voxelMap : MonoBehaviour
                         if (cubes[x + 1, y, z] == 0)
                         {
                             Vector3[] verticesA ={
-                                new Vector3(x+0.5f,y+0.5f,z-0.5f),
-                                new Vector3(x+0.5f,y+0.5f,z+0.5f),
                                 new Vector3(x+0.5f,y-0.5f,z-0.5f),
-                                new Vector3(x+0.5f,y-0.5f,z+0.5f)
+                                new Vector3(x+0.5f,y+0.5f,z-0.5f),
+                                new Vector3(x+0.5f,y-0.5f,z+0.5f),
+                                new Vector3(x+0.5f,y+0.5f,z+0.5f)
                             };
                             vertices.AddRange(verticesA);
                             createFace(Vector3.right, cubes[x, y, z]);
@@ -145,10 +145,10 @@ public class voxelMap : MonoBehaviour
                         if (cubes[x - 1, y, z] == 0)
                         {
                             Vector3[] verticesA ={
-                                new Vector3(x-0.5f,y+0.5f,z+0.5f),
-                                new Vector3(x-0.5f,y+0.5f,z-0.5f),
                                 new Vector3(x-0.5f,y-0.5f,z+0.5f),
-                                new Vector3(x-0.5f,y-0.5f,z-0.5f)
+                                new Vector3(x-0.5f,y+0.5f,z+0.5f),
+                                new Vector3(x-0.5f,y-0.5f,z-0.5f),
+                                new Vector3(x-0.5f,y+0.5f,z-0.5f)
                             };
                             vertices.AddRange(verticesA);
                             createFace(Vector3.left, cubes[x, y, z]);
@@ -177,10 +177,10 @@ public class voxelMap : MonoBehaviour
                             {
 
                                 Vector3[] verticesA ={
-                                    new Vector3(x+0.5f,y-0.5f,z-0.5f),
-                                    new Vector3(x+0.5f,y-0.5f,z+0.5f),
-                                    new Vector3(x-0.5f,y-0.5f,z-0.5f),
-                                    new Vector3(x-0.5f,y-0.5f,z+0.5f)
+                                     new Vector3(x-0.5f,y-0.5f,z+0.5f),
+                                     new Vector3(x-0.5f,y-0.5f,z-0.5f),
+                                     new Vector3(x+0.5f,y-0.5f,z+0.5f),
+                                     new Vector3(x+0.5f,y-0.5f,z-0.5f)
                                 };
                                 vertices.AddRange(verticesA);
                                 createFace(Vector3.down, cubes[x, y, z]);
@@ -204,10 +204,10 @@ public class voxelMap : MonoBehaviour
                         if (cubes[x, y, z - 1] == 0)
                         {
                             Vector3[] verticesA ={
-                                new Vector3(x+0.5f,y+0.5f,z-0.5f),
-                                new Vector3(x+0.5f,y-0.5f,z-0.5f),
+                                new Vector3(x-0.5f,y-0.5f,z-0.5f),
                                 new Vector3(x-0.5f,y+0.5f,z-0.5f),
-                                new Vector3(x-0.5f,y-0.5f,z-0.5f)
+                                new Vector3(x+0.5f,y-0.5f,z-0.5f),
+                                new Vector3(x+0.5f,y+0.5f,z-0.5f)
                             };
                             vertices.AddRange(verticesA);
                             createFace(Vector3.back, cubes[x, y, z]);
